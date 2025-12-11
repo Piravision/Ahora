@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Good Morning, Vietnam</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0c0c0c;
+            color: #f4f4f4;
+            position: relative;
+        }
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #1f1f1f;
+            padding: 10px 20px;
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .logo {
+            max-height: 160px;
+            height: auto;
+            width: auto;
+        }
+
+        @media (max-width: 600px) {
+            .logo {
+                max-height: 120px;
+            }
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .social-icons img {
+            width: 35px;
+            height: 35px;
+            transition: transform 0.2s;
+        }
+
+        .social-icons img:hover {
+            transform: scale(1.1);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .background {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            filter: blur(15px) brightness(0.3);
+            background: url('https://image.tmdb.org/t/p/original/mbgJEkrJ0uBOakLwpufdmW4K8Im.jpg') no-repeat center center;
+            background-size: cover;
+        }
+
+        .content {
+            background: rgba(255, 255, 255, 0.07);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+		.section-title-1 {
+            border-bottom: 2px solid #ff9900;
+            margin-bottom: 10px;
+        }
+
+        .section-title-1 h2 {
+            margin: 0;
+            font-size: 1.4rem;
+            color: #ff9900;
+		}
+
+        .section-title-2 {
+            border-bottom: 2px solid #ff9900;
+            margin-bottom: 10px;
+        }
+
+        .section-title-2 h2 {
+            margin: 0;
+            font-size: 1.4rem;
+            color: #ff9900;
+        }
+
+        .image-container, .poster, .content-logo {
+            position: relative;
+            display: inline-block;
+            background-color: #333;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .image-container img, .poster img, .content-logo img {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            background-color: #333;
+        }
+
+        .image-container img {
+            max-width: 300px;
+        }
+
+        .content-logo {
+            text-align: center;
+            background: none;
+            margin-bottom: 20px;
+        }
+
+        .content-logo img {
+            background: none;
+            max-height: 80px;
+            width: auto;
+            margin-bottom: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+
+        .info {
+            flex: 1;
+        }
+
+        .info h1 {
+            margin-top: 0;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .info p {
+            margin: 5px 0;
+            line-height: 1.4;
+        }
+
+        .crew, .cast {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .card {
+            text-align: center;
+            width: 100px;
+            overflow: hidden;
+        }
+
+        .card img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            transition: transform 0.2s;
+            background-color: #333;
+        }
+
+        .card img:hover {
+            transform: scale(1.1);
+        }
+
+        .card p {
+            margin-top: 5px;
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background: #111;
+            color: #fff;
+        }
+
+        .series-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .series-info .poster img {
+            max-width: 200px;
+            border-radius: 10px;
+            background-color: #333;
+        }
+
+        .series-info .data {
+            flex: 1;
+        }
+
+        .series-info .data p {
+            margin: 5px 0;
+        }
+
+        @media (max-width: 600px) {
+          .series-info {
+            flex-direction: column;
+            align-items: center;
+          }
+        }
+
+        a {
+            color: #ff9900;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Cabecera -->
+    <div class="header">
+        <div class="logo-container">
+            <a href="https://piravision.github.io/App/" target="_blank">
+				<img src="https://cdn.streamelements.com/uploads/fa3fe2b3-134b-4288-bfef-29948befc05f.png" alt="Logo" class="logo">
+        </div>
+        <div class="social-icons">
+            <a href="https://www.twitch.tv/piravision" target="_blank">
+                <img src="https://cdn.streamelements.com/uploads/4e340b43-7b0e-4bad-81d4-197c233827c4.png" alt="Twitch">
+            </a>
+            <a href="https://kick.com/retro-verse" target="_blank">
+                <img src="https://cdn.streamelements.com/uploads/9e660f91-49cb-476f-b328-8a1e5d9706ae.png" alt="Kick">
+            </a>
+            <a href="https://discord.gg/7VEzeTy55R" target="_blank">
+                <img src="https://cdn.streamelements.com/uploads/e731c1a0-344f-432d-bbf8-0590844f7e25.png" alt="Discord">
+            </a>
+            <a href="https://x.com/PiraVision" target="_blank">
+                <img src="https://cdn.streamelements.com/uploads/aecdfafd-fb1e-41d7-91ff-cc7d5cb34a32.png" alt="X (Twitter)">
+            </a>
+            <a href="https://t.me/+UD7ZygM3MrlhNjg0" target="_blank">
+                <img src="https://cdn.streamelements.com/uploads/16594692-335f-470e-9beb-fd542023ec96.png" alt="Telegram">
+            </a>
+        </div>
+    </div>
+
+    <div class="background"></div>
+    <div class="container">
+        <!-- VIDEO EN DIRECTO -->
+			<div class="content" style="padding: 0; margin-bottom: 30px;">
+				<div style="
+					width: 100%;
+					aspect-ratio: 16 / 9;
+					background: #000;
+					border-radius: 10px;
+					overflow: hidden;">
+					
+					<iframe 
+						src="https://player.kick.com/retro-verse"
+						frameborder="0"
+						allowfullscreen
+						scrolling="no"
+						style="width: 100%; height: 100%;">
+					</iframe>
+				</div>
+			</div>
+		
+		<!-- Contenido principal -->
+        <div class="content">
+            <div class="section-title-1"><h2>Estamos viendo</h2></div>
+            
+            
+            <!-- Logo del contenido -->
+            <div class="content-logo">
+                <img src="https://image.tmdb.org/t/p/original/3b18uJZnQXeymwzfpseViKHT5A5.png" alt="Logo del contenido">
+            </div>
+            
+            
+			<div class="details">
+                <div class="image-container">
+                    <img src="https://image.tmdb.org/t/p/original/gsh0fhNQZ6O1ZYsDIt3THtBxoeP.jpg" alt="Imagen principal">
+                </div>
+                <div class="info">
+                    <h1>Good Morning, Vietnam</h1>
+                    
+                        <p><strong>Tipo:</strong> Película</p>
+                        <p><strong>Año:</strong> 1987</p>
+                        <p><strong>Duración:</strong> 2h 1m</p>
+                        <p><strong>Género:</strong> Comedia, Drama, Bélica</p>
+                    
+                    <p><strong>Sinopsis:</strong> Vietnam. 1965. Un pinchadiscos de la radio, Adrian Cronauer, es enviado a Saigón para trabajar en la emisora del ejército norteamericano. En contraste con sus aburridos antecesores, Cronauer es pura dinamita, sus comentarios irreverentes, sus tacos e improperios y sus críticas al vicepresidente, le hacen ganarse el aprecio de las tropas. Sin embargo su superior el teniente Hauk no es de la misma opinión.</p>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="content">
+            <div class="section-title-2"><h2>Director</h2></div>
+            <div class="crew">
+                
+                <div class="card">
+                    <a href="https://www.themoviedb.org/person/8246" target="_blank">
+                        <img src="https://image.tmdb.org/t/p/w185/auf7SnoOE9FULo8KhSSL8c2Yrlb.jpg" alt="Barry Levinson">
+                    </a>
+                    <p>Barry Levinson</p>
+                </div>
+                
+            </div>
+        </div>
+        
+
+        
+        <div class="content">
+            <div class="section-title-2"><h2>Reparto</h2></div>
+            <div class="cast">
+                
+                <div class="card">
+                    <a href="https://www.themoviedb.org/person/2157" target="_blank">
+                        <img src="https://image.tmdb.org/t/p/w185/iYdeP6K0qz44Wg2Nw9LPJGMBkQ5.jpg" alt="Robin Williams">
+                    </a>
+                    <p>Robin Williams</p>
+                </div>
+                
+                <div class="card">
+                    <a href="https://www.themoviedb.org/person/2178" target="_blank">
+                        <img src="https://image.tmdb.org/t/p/w185/4w7l5JUwnwFNBy7J93ZwYN1nihm.jpg" alt="Forest Whitaker">
+                    </a>
+                    <p>Forest Whitaker</p>
+                </div>
+                
+                <div class="card">
+                    <a href="https://www.themoviedb.org/person/11960" target="_blank">
+                        <img src="https://image.tmdb.org/t/p/w185/xSAv4pTPmP8FKG0nP2qQXVBJPAU.jpg" alt="Tom T. Tran">
+                    </a>
+                    <p>Tom T. Tran</p>
+                </div>
+                
+                <div class="card">
+                    <a href="https://www.themoviedb.org/person/11961" target="_blank">
+                        <img src="https://image.tmdb.org/t/p/w185/kY6nSy9R2n0VhIdTNkKbhjS1uMI.jpg" alt="จินตหรา สุขพัฒน์">
+                    </a>
+                    <p>จินตหรา สุขพัฒน์</p>
+                </div>
+                
+                <div class="card">
+                    <a href="https://www.themoviedb.org/person/9257" target="_blank">
+                        <img src="https://image.tmdb.org/t/p/w185/qFvS4YHzZeIc77Gom56XkTn5wxA.jpg" alt="Bruno Kirby">
+                    </a>
+                    <p>Bruno Kirby</p>
+                </div>
+                
+                <div class="card">
+                    <a href="https://www.themoviedb.org/person/4040" target="_blank">
+                        <img src="https://image.tmdb.org/t/p/w185/hs8jxnVGOytAhwM9Y7Rab69ijdW.jpg" alt="Robert Wuhl">
+                    </a>
+                    <p>Robert Wuhl</p>
+                </div>
+                
+                <div class="card">
+                    <a href="https://www.themoviedb.org/person/22131" target="_blank">
+                        <img src="https://image.tmdb.org/t/p/w185/4yQXzRXMqQxKgYaUteluNmAKBX4.jpg" alt="J. T. Walsh">
+                    </a>
+                    <p>J. T. Walsh</p>
+                </div>
+                
+                <div class="card">
+                    <a href="https://www.themoviedb.org/person/31005" target="_blank">
+                        <img src="https://image.tmdb.org/t/p/w185/70HEA9aOmmPmTeCvxXqJC6KGHaZ.jpg" alt="Noble Willingham">
+                    </a>
+                    <p>Noble Willingham</p>
+                </div>
+                
+            </div>
+            
+            <p><a href="https://www.themoviedb.org/" target="_blank">Ver reparto completo</a></p>
+            
+        </div>
+        
+
+        
+    </div>
+    <div class="footer">
+        <p>PIRAVISION APP</p>
+    </div>
+</body>
+</html>
